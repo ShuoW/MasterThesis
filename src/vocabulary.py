@@ -20,7 +20,7 @@ for i in range(0,len(train_data)):
 
 # write out the results
 result = {}
-out = codecs.open("../data/vocabulary2", 'w', 'utf-8')
+out = codecs.open("../data/vocabulary5", 'w', 'utf-8')
 
 # count the frequency
 for word in text:
