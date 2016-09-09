@@ -23,7 +23,7 @@ def read_function(set_name, voc_name):
     text1 = []
     text2 = []
     for i in range(0, len(input_data1)):
-        for j in range(0, 20):
+        for j in range(0, poetry_len):
             text1.append(input_data1[i][j])
 
     for i in range(0,len(voc[0])):
@@ -102,7 +102,7 @@ def seed_function():
 
     # random select the first line
     start_index = random.randint(0, len(text) - maxlen - 1)
-    start_index = start_index / 20 * 20
+    start_index = start_index / poetry_len * poetry_len
     # selecting the first line
     sentence = text[start_index: start_index + maxlen]
     out.write("".join(sentence))
@@ -133,7 +133,7 @@ def seed_function1():
     first_sentence = read_data2("try")
     # put the data into a list obe by one
     text1 = []
-    for j in range(0, 5):
+    for j in range(0, maxlen):
         text1.append(first_sentence[0][j])
 
 
@@ -202,7 +202,7 @@ def pre(char_indices,indices_char,diversity,model,sentence,yun):
     # initial for the new sentence
     new_sentence = []
     count_r = 0
-    for j in range(0, 5):
+    for j in range(0, maxlen):
         next_index = sample(preds[j], diversity)
         next_char = indices_char[next_index]
         new_sentence.append(next_char)
@@ -229,7 +229,7 @@ def main():
 
     global input_data, text, chars, maxlen, poetry_len
     maxlen = 5
-    poetry_len = 20
+    poetry_len = maxlen * 4
 
     input_data, text, chars = read_function(set_name,voc_name)
     char_indices, indices_char = build_dict()

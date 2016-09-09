@@ -21,7 +21,7 @@ def read_function(set_name, voc_name):
     text2 = []
 
     for i in range(0, len(input_data1)):
-        for j in range(0, 10):
+        for j in range(0, maxlen*2):
             text1.append(input_data1[i][j])
     # the total word number
     for i in range(0,len(voc[0])):
@@ -106,8 +106,8 @@ def model1():
 
 def seed_function(iteration):
 
-    first = text[(iteration-1)*10:(iteration-1)*10+5]
-    second = text[(iteration-1)*10+5:iteration*10]
+    first = text[(iteration-1)*maxlen*2:(iteration-1)*maxlen*2+maxlen]
+    second = text[(iteration-1)*maxlen*2+maxlen:iteration*maxlen*2]
     # print (iteration-1)*10,(iteration-1)*10+5,(iteration-1)*10+5,iteration*10
     return first, second
 
@@ -159,7 +159,7 @@ def pre(char_indices,indices_char,diversity,model,sentence,sentence1):
     # initial for the new sentence
     new_sentence = []
     count_r = 0
-    for j in range(0, 5):
+    for j in range(0, maxlen):
         next_index = sample(preds[j], diversity)
         next_char = indices_char[next_index]
         new_sentence.append(next_char)
@@ -188,7 +188,7 @@ def main():
 
     global text, chars, maxlen, poetry_len
     maxlen = 5
-    poetry_len = 20
+    poetry_len = maxlen * 4
 
     text, chars = read_function(set_name,voc_name)
     char_indices, indices_char = build_dict()
