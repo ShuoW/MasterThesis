@@ -3,14 +3,21 @@ from keras.models import Sequential
 import random
 from ulti import *
 
+
+
 # set the training dataset
 set_name = 'train5'
 qvalid_data = read_data(set_name)
 
+# the length of a line
+maxlen = 5
+# the length of a poetry
+poetry_len = maxlen * 4
+
 # put the data into a list one by one
 text = []
 for i in range(0,len(qvalid_data)):
-    for j in range(0, 20):
+    for j in range(0, poetry_len):
         text.append(qvalid_data[i][j])
 
 # the total word number
@@ -23,10 +30,6 @@ print 'total chars:', len(chars)
 char_indices = dict((c, i) for i, c in enumerate(chars))
 indices_char = dict((i, c) for i, c in enumerate(chars))
 
-# the length of a line
-maxlen = 5
-# the length of a poetry
-poetry_len = 20
 
 # the input sentence/next sentence
 sentences = []
@@ -91,7 +94,7 @@ for iteration in range(1, 100):
 
     # random select the first line
     start_index = random.randint(0, len(text) - maxlen - 1)
-    start_index = start_index / 20 * 20
+    start_index = start_index / poetry_len * poetry_len
 
     # add the diversity parameter in the sample function
     # for diversity in [0.2, 0.5, 1.0, 1.2]:
@@ -118,7 +121,7 @@ for iteration in range(1, 100):
         new_sentence = []
 
         # print each character
-        for j in range(0, 5):
+        for j in range(0, maxlen):
             next_index = sample(preds[j], diversity)
             next_char = indices_char[next_index]
             new_sentence.append(next_char)
