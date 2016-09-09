@@ -4,15 +4,17 @@ from ulti import *
 # read a generated line
 hy_data = read_data2("generated")
 hypothesis = []
-for i in range(0, 5):
+line_length = 5
+for i in range(0, line_length):
     hypothesis.append(hy_data[0][i])
 
 # read 20 referenced lines
 ref_data = read_data("ref")
 ref = []
-for i in range(0, 20):
+poem_length = 4 * line_length
+for i in range(0, poem_length):
     ref.append([ref_data[i][0]])
-    for j in range(0, 5):
+    for j in range(0, line_length):
         ref[i].append(ref_data[i][j])
 
 # set the biagram weight
