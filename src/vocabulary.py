@@ -6,16 +6,19 @@ qvalid_data = read_data("valid5")
 test_data = read_data("test5")
 train_data = read_data("train5")
 
+maxlen = 5
+poetry_line = maxlen * 4
+
 # put the character to the list
 text = []
 for i in range(0,len(qvalid_data)):
-    for j in range(0, 20):
+    for j in range(0, poetry_line):
         text.append(qvalid_data[i][j])
 for i in range(0,len(test_data)):
-    for j in range(0, 20):
+    for j in range(0, poetry_line):
         text.append(test_data[i][j])
 for i in range(0,len(train_data)):
-    for j in range(0, 20):
+    for j in range(0, poetry_line):
         text.append(train_data[i][j])
 
 # write out the results
